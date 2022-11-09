@@ -95,11 +95,11 @@ export function BottomSheetView({ state, descriptors }: Props) {
     [colors.border],
   );
 
+  // Avoid rendering provider if we only have one screen.
 
   return (
-    <>
         <BottomSheetModalProvider>
-          {state.routes.slice(1).map((route) => {
+          {state.routes.map((route) => {
             const { options, navigation, render } = descriptors[route.key];
 
             const {
@@ -133,6 +133,5 @@ export function BottomSheetView({ state, descriptors }: Props) {
             );
           })}
         </BottomSheetModalProvider>
-    </>
   );
 }
