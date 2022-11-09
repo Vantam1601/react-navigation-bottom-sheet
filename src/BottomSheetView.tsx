@@ -95,16 +95,9 @@ export function BottomSheetView({ state, descriptors }: Props) {
     [colors.border],
   );
 
-  // Avoid rendering provider if we only have one screen.
-  const shouldRenderProvider = React.useRef(false);
-  shouldRenderProvider.current =
-    shouldRenderProvider.current || state.routes.length > 1;
 
-  const firstScreen = descriptors[state.routes[0].key];
   return (
     <>
-      {firstScreen.render()}
-      {shouldRenderProvider.current && (
         <BottomSheetModalProvider>
           {state.routes.slice(1).map((route) => {
             const { options, navigation, render } = descriptors[route.key];
@@ -140,7 +133,6 @@ export function BottomSheetView({ state, descriptors }: Props) {
             );
           })}
         </BottomSheetModalProvider>
-      )}
     </>
   );
 }
